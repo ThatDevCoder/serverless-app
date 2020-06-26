@@ -14,3 +14,8 @@ export const StyledTitle = styled.h1`
 export const Strong = styled.strong`
     font-weight: bold;
 `;
+
+export const StrongGameOver = styled.strong`
+    font-weight: bold;
+    text-align: center;
+`;

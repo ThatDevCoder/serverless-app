@@ -6,17 +6,19 @@ import {
     StyledCharacter,
 } from "../styled/Game";
 import { Strong } from "../styled/Random";
+import { useScore } from "../context/ScoreContext";
 
 export default function Game({ history }) {
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useScore(0);
     const characters = "abcdefghijklmnopqrstuvwxyz0123456789";
     const [currentCharacter, setCurrentCharacter] = useState("");
-    const MAX_SECONDS = 50;
+    const MAX_SECONDS = 5;
     const [ms, setMs] = useState(0);
     const [seconds, setSeconds] = useState(MAX_SECONDS);
 
     useEffect(() => {
         setRandomCharacter();
+        setScore(0);
         const currentTime = new Date();
         const interval = setInterval(() => updateTime(currentTime), 1);
         return () => {
