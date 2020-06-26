@@ -87,11 +87,11 @@ export default function Game({ history }) {
     return (
         <StyledGame>
             <StyledScore>
-                Score: <Strong>{score}</Strong>
+                Score:- <Strong>{score}</Strong>
             </StyledScore>
             <StyledCharacter>{currentCharacter}</StyledCharacter>
             <StyledTimer>
-                Time:{" "}
+                Time:-{" "}
                 <Strong>
                     {seconds}:{ms}
                 </Strong>
