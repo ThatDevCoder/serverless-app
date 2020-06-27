@@ -24,6 +24,7 @@ export default function Game({ history }) {
         return () => {
             clearInterval(interval);
         };
+        // eslint-disable-next-line
     }, []);
 
     const updateTime = (startTime) => {
@@ -69,6 +70,7 @@ export default function Game({ history }) {
             }
             setRandomCharacter();
         },
+        // eslint-disable-next-line
         [currentCharacter]
     );
 
