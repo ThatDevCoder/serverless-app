@@ -1,21 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useScore } from "../context/ScoreContext";
-import { StrongGameOver } from "../styled/Random";
-import { StyledCharacter } from "../styled/Game";
 import { StyledLink } from "../styled/Navbar";
-
+import { StyledCharacter } from "../styled/Game";
 export default function GameOver({ history }) {
     const [score] = useScore();
+    const [scoreMessage, setScoreMessage] = useState("");
+
     if (score === -1) {
         history.push("/");
     }
+
+    useEffect(() => {
+        const saveHighScore = async () => {
+            try {
+                const options = {
+                    method: "POST",
+                    body: JSON.stringify({ name: "asdasfsd", score }),
+                };
+                const res = await fetch(
+                    "/.netlify/functions/saveHighScore",
+                    options
+                );
+                const data = await res.json();
+                if (data.id) {
+                    setScoreMessage("Congrats! You got a high score!!");
+                } else {
+                    setScoreMessage("Sorry, not a high score. Keep trying!");
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+        saveHighScore();
+    }, [score]);
     return (
         <div>
             <h1>Game Over</h1>
-            <StrongGameOver>The Score you scored is:-</StrongGameOver>
+            <h2>{scoreMessage}</h2>
+
             <StyledCharacter>{score}</StyledCharacter>
-            <StyledLink to="/">Go Home</StyledLink>
-            <StyledLink to="/Game">Play Again</StyledLink>
+            <div>
+                <StyledLink to="/">Go Home</StyledLink>
+            </div>
+            <div>
+                <StyledLink to="/game">Play Again</StyledLink>
+            </div>
         </div>
     );
 }
