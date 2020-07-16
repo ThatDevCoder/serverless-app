@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useScore } from "../context/ScoreContext";
 import { StyledLink } from "../styled/Navbar";
 import { StyledCharacter } from "../styled/Game";
+import { StyledTitle } from "../styled/Random";
+
 export default function GameOver({ history }) {
     const [score] = useScore();
     const [scoreMessage, setScoreMessage] = useState("");
@@ -15,7 +17,7 @@ export default function GameOver({ history }) {
             try {
                 const options = {
                     method: "POST",
-                    body: JSON.stringify({ name: "asdasfsd", score }),
+                    body: JSON.stringify({ name: "Devyash", score }),
                 };
                 const res = await fetch(
                     "/.netlify/functions/saveHighScore",
@@ -35,8 +37,8 @@ export default function GameOver({ history }) {
     }, [score]);
     return (
         <div>
-            <h1>Game Over</h1>
-            <h2>{scoreMessage}</h2>
+            <StyledTitle>Game Over</StyledTitle>
+            <h3>{scoreMessage}</h3>
 
             <StyledCharacter>{score}</StyledCharacter>
             <div>

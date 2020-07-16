@@ -9,6 +9,7 @@ exports.handler = async (event) => {
     }
 
     const { score, name } = JSON.parse(event.body);
+    console.log(`${score} + ${name}`);
     if (typeof score === "undefined" || !name) {
         return {
             statusCode: 400,
