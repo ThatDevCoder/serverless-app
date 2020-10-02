@@ -27,21 +27,6 @@ export default function Game({ history }) {
         // eslint-disable-next-line
     }, []);
 
-    const updateTime = (startTime) => {
-        const endTime = new Date();
-        const msPassedStr = (
-            endTime.getTime() - startTime.getTime()
-        ).toString();
-        const formattedMSString = ("0000" + msPassedStr).slice(-5);
-        // console.log(formattedMSString);
-        const updatedSeconds =
-            MAX_SECONDS - parseInt(formattedMSString.substring(0, 2)) - 1;
-        const updatedMS =
-            1000 -
-            parseInt(formattedMSString.substring(formattedMSString.length - 3));
-        setSeconds(addLeadingZeros(updatedSeconds, 2));
-        setMs(addLeadingZeros(updatedMS, 3));
-    };
 
     const addLeadingZeros = (num, length) => {
         let zeros = "";
